@@ -1,0 +1,37 @@
+/* ============================================================
+   TEMA — aquí cambias colores, fuentes, bordes y filtro de fotos
+   ============================================================ */
+
+:root {
+  /* Colores (modo claro) */
+  --color-bg: #ffffff;
+  --color-fg: #0a0a0a;
+  --color-muted: #6e6e6e;
+  --color-line: #0a0a0a;
+  --color-accent: #0a0a0a; /* botones; cámbialo por un color si el cliente lo pide */
+  --color-accent-fg: #ffffff;
+
+  /* Colores (secciones invertidas) */
+  --inv-bg: #0a0a0a;
+  --inv-fg: #ffffff;
+  --inv-muted: #a3a3a3;
+  --inv-line: #ffffff;
+
+  /* Tipografías */
+  --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
+  --font-body: 'Bricolage Grotesque', system-ui, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+
+  /* Forma */
+  --radius: 0px; /* 0 = look afilado · 999px = redondeado */
+  --radius-img: 0px;
+  --line-width: 1px;
+
+  /* Fotos: grayscale(1) = blanco y negro · none = color original */
+  --img-filter: grayscale(1) contrast(1.08);
+
+  /* Layout */
+  --max-width: 1280px;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --section-space: clamp(5rem, 12vw, 10rem);
+}

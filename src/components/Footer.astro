@@ -1,0 +1,15 @@
+---
+import { site } from '../config/site';
+---
+
+<footer class="footer inverted">
+  <div class="container inner">
+    <span>© {new Date().getFullYear()} {site.name}. Todos los derechos reservados.</span>
+    <a href={site.contact.instagram} target="_blank" rel="noopener">{site.contact.instagramHandle}</a>
+  </div>
+</footer>
+
+<style>
+  .footer { padding-block: 1.5rem 2rem; font-size: 0.85rem; color: var(--color-muted); }
+  .inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; padding-top: 1.5rem; border-top: var(--line-width) solid #333; }
+</style>

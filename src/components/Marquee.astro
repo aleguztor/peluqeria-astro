@@ -1,0 +1,33 @@
+---
+import { site } from '../config/site';
+const items = site.marquee;
+---
+
+<div class="marquee inverted" aria-hidden="true">
+  <div class="track">
+    {[0, 1].map(() => (
+      <div class="group">
+        {items.map((t) => (
+          <span class="item">{t}<i>✦</i></span>
+        ))}
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .marquee { overflow: hidden; padding-block: 1.4rem; }
+  .track { display: flex; width: max-content; animation: scroll 30s linear infinite; }
+  .group { display: flex; flex-shrink: 0; }
+  .item {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .item i { font-style: normal; margin-inline: 2rem; font-size: 0.6em; vertical-align: middle; }
+  @keyframes scroll { to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .track { animation: none; } }
+</style>

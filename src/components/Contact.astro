@@ -1,0 +1,63 @@
+---
+import { site, whatsappUrl } from '../config/site';
+const { title, text } = site.contactSection;
+const c = site.contact;
+---
+
+<section class="section inverted" id="contacto">
+  <div class="container">
+    <p class="eyebrow reveal">04 — Contacto</p>
+    <h2 class="big reveal">{title}</h2>
+    <p class="lead reveal">{text}</p>
+    <a href={whatsappUrl()} class="btn cta reveal" target="_blank" rel="noopener">
+      Reservar por WhatsApp →
+    </a>
+
+    <div class="info">
+      <div class="reveal">
+        <h3 class="eyebrow">Horario</h3>
+        <ul>
+          {site.hours.map((h) => (
+            <li><span>{h.days}</span><span>{h.time}</span></li>
+          ))}
+        </ul>
+      </div>
+      <div class="reveal">
+        <h3 class="eyebrow">Visítanos</h3>
+        <p><a href={c.mapsUrl} target="_blank" rel="noopener">{c.address} ↗</a></p>
+      </div>
+      <div class="reveal">
+        <h3 class="eyebrow">Escríbenos</h3>
+        <p><a href={`tel:${c.phone.replace(/\s/g, '')}`}>{c.phone}</a></p>
+        <p><a href={`mailto:${c.email}`}>{c.email}</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .big {
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 17vw, 15rem);
+    font-weight: 800;
+    letter-spacing: -0.07em;
+    line-height: 0.85;
+    margin: 1.5rem 0;
+  }
+  .lead { font-size: 1.3rem; color: var(--color-muted); max-width: 36ch; margin-bottom: 2rem; }
+  .cta { font-size: 1.1rem; padding: 1.1rem 2rem; }
+  .info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2.5rem;
+    margin-top: 6rem;
+    padding-top: 2.5rem;
+    border-top: var(--line-width) solid var(--color-line);
+  }
+  .info h3 { margin-bottom: 1rem; font-weight: 500; }
+  .info ul { list-style: none; margin: 0; padding: 0; }
+  .info li { display: flex; justify-content: space-between; gap: 1rem; padding-block: 0.35rem; }
+  .info p { margin-bottom: 0.3rem; }
+  .info a { border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+  .info a:hover { border-color: currentColor; }
+</style>

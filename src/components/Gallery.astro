@@ -1,0 +1,43 @@
+---
+import { site } from '../config/site';
+const { title, images } = site.gallery;
+---
+
+<section class="section" id="galeria">
+  <div class="container">
+    <div class="head reveal">
+      <p class="eyebrow">02 — Portfolio</p>
+      <h2 class="section-title">{title}</h2>
+    </div>
+
+    <div class="grid">
+      {images.map((img) => (
+        <figure class="item reveal">
+          <img src={img.src} alt={img.alt} loading="lazy" />
+        </figure>
+      ))}
+    </div>
+
+    <a href={site.contact.instagram} class="btn btn--ghost ig" target="_blank" rel="noopener">
+      Más en Instagram {site.contact.instagramHandle} ↗
+    </a>
+  </div>
+</section>
+
+<style>
+  .head { margin-bottom: 3.5rem; }
+  .head .section-title { margin-top: 1rem; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .item { margin: 0; overflow: hidden; border-radius: var(--radius-img); aspect-ratio: 3 / 4; }
+  /* Look "editorial": columnas escalonadas */
+  .item:nth-child(3n + 2) { transform: translateY(2.5rem); }
+  .item:nth-child(3n + 2).reveal:not(.is-visible) { transform: translateY(5rem); }
+  .item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1); }
+  .item:hover img { transform: scale(1.07); }
+  .ig { margin-top: 5rem; }
+  @media (max-width: 800px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    .item:nth-child(3n + 2) { transform: none; }
+    .item:nth-child(even) { transform: translateY(1.5rem); }
+  }
+</style>

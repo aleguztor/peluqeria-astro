@@ -1,0 +1,35 @@
+---
+import { site } from '../config/site';
+const { title, members } = site.team;
+---
+
+<section class="section team" id="equipo">
+  <div class="container">
+    <div class="head reveal">
+      <p class="eyebrow">03 — Manos expertas</p>
+      <h2 class="section-title">{title}</h2>
+    </div>
+
+    <div class="grid">
+      {members.map((m) => (
+        <article class="card reveal">
+          <div class="photo"><img src={m.image} alt={m.name} loading="lazy" /></div>
+          <h3>{m.name}</h3>
+          <p class="serif">{m.role}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .team { border-top: var(--line-width) solid var(--color-line); }
+  .head { margin-bottom: 3.5rem; }
+  .head .section-title { margin-top: 1rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; }
+  .photo { overflow: hidden; aspect-ratio: 1; border-radius: var(--radius-img); margin-bottom: 1.2rem; }
+  .photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s; }
+  .card:hover .photo img { transform: scale(1.06); }
+  h3 { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; letter-spacing: -0.03em; }
+  .serif { font-size: 1.25rem; color: var(--color-muted); }
+</style>

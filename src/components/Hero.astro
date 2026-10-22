@@ -1,0 +1,100 @@
+---
+import { site, whatsappUrl } from '../config/site';
+const { lines, subtitle, image, badge } = site.hero;
+---
+
+<section class="hero" id="top">
+  <div class="container hero__grid">
+    <div class="hero__text">
+      <p class="eyebrow">{site.tagline} · {site.contact.address.split(',').pop()?.trim()}</p>
+      <h1 class="hero__title">
+        {lines.map((l, i) => (
+          <span class:list={['line', i % 2 === 1 && 'serif']} style={`--i:${i}`}>{l}</span>
+        ))}
+      </h1>
+      <p class="hero__sub">{subtitle}</p>
+      <div class="hero__actions">
+        <a href={whatsappUrl()} class="btn" target="_blank" rel="noopener">{site.ctaLabel} cita →</a>
+        <a href="#servicios" class="btn btn--ghost">Ver servicios</a>
+      </div>
+    </div>
+
+    <div class="hero__media">
+      <img src={image} alt="" />
+      <svg class="badge" viewBox="0 0 200 200" aria-hidden="true">
+        <defs>
+          <path id="circle" d="M100,100 m-75,0 a75,75 0 1,1 150,0 a75,75 0 1,1 -150,0" />
+        </defs>
+        <circle cx="100" cy="100" r="98" fill="#fff" />
+        <text font-size="15" letter-spacing="3" fill="#000" font-weight="600">
+          <textPath href="#circle">{badge.repeat(2)}</textPath>
+        </text>
+        <text x="100" y="116" text-anchor="middle" font-size="46" font-weight="800" fill="#000">✂</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    padding-top: 6rem;
+    padding-bottom: 4rem;
+  }
+  .hero__grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+  }
+  .hero__title {
+    margin: 1.2rem 0 1.8rem;
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 13vw, 11rem);
+    font-weight: 800;
+    line-height: 0.88;
+    letter-spacing: -0.06em;
+  }
+  .line {
+    display: block;
+    opacity: 0;
+    transform: translateY(60px);
+    animation: rise 1s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+    animation-delay: calc(var(--i) * 0.15s + 0.1s);
+  }
+  .line.serif { font-size: 1.05em; padding-left: 0.4em; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+
+  .hero__sub { max-width: 34ch; color: var(--color-muted); font-size: 1.15rem; }
+  .hero__actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 2rem; }
+
+  .hero__media { position: relative; }
+  .hero__media img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border-radius: var(--radius-img);
+  }
+  .badge {
+    position: absolute;
+    left: -3.5rem;
+    bottom: 3rem;
+    width: clamp(110px, 14vw, 170px);
+    animation: spin 18s linear infinite;
+    filter: none;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  @media (max-width: 800px) {
+    .hero__grid { grid-template-columns: 1fr; }
+    .hero__media { order: -1; }
+    .hero__media img { aspect-ratio: 4 / 3; }
+    .badge { left: auto; right: 1rem; bottom: -2rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .line { animation: none; opacity: 1; transform: none; }
+    .badge { animation: none; }
+  }
+</style>
